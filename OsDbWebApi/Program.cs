@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+п»їusing Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OsDbWebApi.Models;
 using OsDbWebApi.Models.Entity;
@@ -15,24 +15,24 @@ app.MapGet("/ping", async(context) => {
 	await context.Response.WriteAsync("pong");
 });
 
-// чтение всех записей из таблицы (R)
+// С‡С‚РµРЅРёРµ РІСЃРµС… Р·Р°РїРёСЃРµР№ РёР· С‚Р°Р±Р»РёС†С‹ (R)
 app.MapGet("/get_notations", async (HttpContext context, ApplicationDbContext db) =>
 {
 	return await db.EntityOperationSystems.ToListAsync();
 });
 
-// чтение записи по id (R (by id))
+// С‡С‚РµРЅРёРµ Р·Р°РїРёСЃРё РїРѕ id (R (by id))
 app.MapGet("/get_notation", async ([FromServices] ApplicationDbContext db,
     [FromQuery] int id) => await db.EntityOperationSystems
     .FirstOrDefaultAsync(p => p.Id == id));
 
 
-// (C) добавление новой записи в таблицу
+// (C) РґРѕР±Р°РІР»РµРЅРёРµ РЅРѕРІРѕР№ Р·Р°РїРёСЃРё РІ С‚Р°Р±Р»РёС†Сѓ
 app.MapPost("/add_new_notation", async (HttpContext context, ApplicationDbContext db) =>
 {
-	//извлекаем данные из запроса
+	//РёР·РІР»РµРєР°РµРј РґР°РЅРЅС‹Рµ РёР· Р·Р°РїСЂРѕСЃР°
 	OperationSystems? entityOperationSystems = await context.Request.ReadFromJsonAsync<OperationSystems>();
-	// добавить запись если не null
+	// РґРѕР±Р°РІРёС‚СЊ Р·Р°РїРёСЃСЊ РµСЃР»Рё РЅРµ null
 	if (entityOperationSystems != null)
 	{
 		db.EntityOperationSystems.Add(entityOperationSystems); // add to collection
@@ -41,7 +41,7 @@ app.MapPost("/add_new_notation", async (HttpContext context, ApplicationDbContex
 	return entityOperationSystems; // return added entity
 });
 
-// удаление записи по id (D)
+// СѓРґР°Р»РµРЅРёРµ Р·Р°РїРёСЃРё РїРѕ id (D)
 app.MapPost("/delete_notation",
     async ([FromServices] ApplicationDbContext db,
     [FromQuery] int id) =>
@@ -51,7 +51,7 @@ app.MapPost("/delete_notation",
         await db.SaveChangesAsync();
     });
 
-// (U) обновление записи по id
+// (U) РѕР±РЅРѕРІР»РµРЅРёРµ Р·Р°РїРёСЃРё РїРѕ id
 app.MapPost("/update_notation",
     async ([FromServices] ApplicationDbContext db,
         [FromQuery] int id, string description, int version) =>
