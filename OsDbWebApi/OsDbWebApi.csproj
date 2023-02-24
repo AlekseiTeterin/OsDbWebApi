@@ -15,4 +15,12 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\777\source\repos\OsDbWebApi\OsDbWebApi\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\777\source\repos\OsDbWebApi\OsDbWebApi\.editorconfig" />
+  </ItemGroup>
+
 </Project>
