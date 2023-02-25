@@ -38,7 +38,7 @@ app.MapPost("/add_new_notation", async (HttpContext context, ApplicationDbContex
 		db.EntityOperationSystems.Add(entityOperationSystems); // add to collection
 		db.SaveChanges(); // save changes to DB
 	}
-	return entityOperationSystems; // return added entity
+	return entityOperationSystems!.ToString(); // return added entity
 });
 
 // удаление записи по id (D)

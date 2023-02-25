@@ -6,6 +6,8 @@ namespace OsDbWebApi.Models
 	public class ApplicationDbContext : DbContext
 	{
 		public DbSet<OperationSystems> EntityOperationSystems { get; set; }
+		public DbSet<PhoneOperationSystems> EntityPhoneOs { get; set; }
+		public DbSet<OsVersions> EntityOsVersions { get; set; }
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
